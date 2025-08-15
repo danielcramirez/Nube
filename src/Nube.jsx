@@ -371,12 +371,16 @@ function usePolarPositions(radius = 300) {
 }
 
 function Highlight({ text, query }) {
-  if (!query) return text;
-  const parts = text.split(new RegExp(`(${query})`, "i"));
+  if (!query || !text) return text || "";
+  
+  // Escapar caracteres especiales de regex
+  const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const parts = text.split(new RegExp(`(${escapedQuery})`, "i"));
+  
   return (
     <>
       {parts.map((p, i) => (
-        <span key={i} className={p.toLowerCase() === query.toLowerCase() ? "bg-yellow-200 rounded px-0.5" : ""}>
+        <span key={i} className={p.toLowerCase() === query.toLowerCase() ? "bg-warning bg-opacity-25 rounded px-1" : ""}>
           {p}
         </span>
       ))}
@@ -386,7 +390,7 @@ function Highlight({ text, query }) {
 
 function Chip({ children }) {
   return (
-    <span className="text-xs rounded-full px-2 py-0.5 bg-slate-100 border border-slate-200">
+    <span className="badge bg-light text-dark border me-1">
       {children}
     </span>
   );
@@ -734,11 +738,17 @@ function ProviderDetail({ provider, onClose }) {
 
 function ProvidersView({ query, onProviderSelect, selectedProvider }) {
   const providers = Object.values(CLOUD_PROVIDERS);
-  const filteredProviders = providers.filter(provider =>
-    provider.name.toLowerCase().includes(query.toLowerCase()) ||
-    provider.shortName.toLowerCase().includes(query.toLowerCase()) ||
-    provider.strengths.some(s => s.toLowerCase().includes(query.toLowerCase()))
-  );
+  const filteredProviders = providers.filter(provider => {
+    if (!query || query.trim() === "") return true;
+    
+    const searchTerm = query.toLowerCase().trim();
+    return (
+      provider.name?.toLowerCase().includes(searchTerm) ||
+      provider.shortName?.toLowerCase().includes(searchTerm) ||
+      provider.strengths?.some(s => s?.toLowerCase().includes(searchTerm)) ||
+      provider.bestFor?.some(b => b?.toLowerCase().includes(searchTerm))
+    );
+  });
 
   return (
     <div>

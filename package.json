@@ -1,6 +1,7 @@
 {
   "name": "servicios-nube-mindmap",
   "version": "1.0.0",
+  "type": "module",
   "description": "Mapa mental interactivo para servicios en la nube",
   "main": "Nube.jsx",
   "scripts": {
