@@ -1,11 +1,12 @@
 # 🌐 Mapa Mental: Servicios en la Nube
 
-Aplicación web interactiva para explicar los diferentes modelos de servicios en la nube: **IaaS**, **PaaS**, **SaaS** y **CaaS**.
+Aplicación web interactiva para explicar los diferentes modelos de servicios en la nube: **IaaS**, **PaaS**, **SaaS** y **CaaS**, con comparativas detalladas de los principales **proveedores cloud**.
 
 ## 🎯 Características
 
 - 🗺️ **Vista Mapa Mental**: Visualización interactiva con nodo central y servicios distribuidos
 - 📊 **Vista Comparativa**: Tabla detallada con responsabilidades, ventajas y desventajas
+- ☁️ **Vista Proveedores**: Comparación completa de AWS, Azure, GCP y Oracle Cloud
 - 🔍 **Búsqueda en tiempo real**: Resalta términos en todo el contenido
 - 📱 **Diseño responsivo**: Optimizado para desktop, tablet y móvil
 - 🎨 **Interfaz moderna**: Diseñado con Bootstrap 5 y animaciones suaves
@@ -75,6 +76,28 @@ Aplicación web interactiva para explicar los diferentes modelos de servicios en
    - Orquestación de contenedores
    - Ejemplos: GKE, EKS, AKS, OpenShift
 
+### 🏢 Proveedores de Nube Cubiertos
+
+1. **AWS (Amazon Web Services)**
+   - Líder del mercado (32% cuota)
+   - 200+ servicios disponibles
+   - Fortalezas: Ecosistema amplio, red global, innovación constante
+
+2. **Microsoft Azure**
+   - Segunda posición (23% cuota)
+   - Integración perfecta con Microsoft Stack
+   - Fortalezas: Soluciones híbridas, Active Directory, IA/ML
+
+3. **Google Cloud Platform (GCP)**
+   - Tercera posición (10% cuota)
+   - Líder en IA/ML y análisis de datos
+   - Fortalezas: Kubernetes nativo, BigQuery, precios competitivos
+
+4. **Oracle Cloud Infrastructure (OCI)**
+   - Especialista en bases de datos
+   - Precios muy competitivos
+   - Fortalezas: Autonomous Database, rendimiento, migración Oracle
+
 ### Analogías Pedagógicas
 
 Cada servicio incluye analogías con **"la casa"** para facilitar la comprensión:
@@ -94,9 +117,12 @@ Cada servicio incluye analogías con **"la casa"** para facilitar la comprensió
 
 ### Funcionalidades para Clase
 
-- Panel de detalles con información completa
+- Panel de detalles con información completa de servicios
+- Panel de proveedores con comparativas técnicas y comerciales
 - Búsqueda para destacar conceptos específicos
 - Vista comparativa para análisis lado a lado
+- Información de certificaciones por proveedor
+- Modelos de precios y casos de uso recomendados
 - Función de impresión para material de apoyo
 
 ## 🔧 Estructura del Proyecto
