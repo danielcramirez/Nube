@@ -872,82 +872,81 @@ export default function XaaSMindMap() {
     <div className="map-container min-h-screen text-dark p-3">
       {/* Header con Bootstrap */}
       <div className="container-fluid mb-4">
-        <div className="row align-items-center justify-content-between">
-          <div className="col-md-8">
-            <h1 className="display-6 fw-bold text-white d-flex align-items-center gap-2">
+        <div className="row align-items-center">
+          <div className="col-12 text-center mb-4">
+            <h1 className="display-6 fw-bold text-white d-flex align-items-center justify-content-center gap-2">
               <Network className="text-warning"/> Mapa mental: IaaS · PaaS · SaaS · CaaS
             </h1>
             <p className="lead text-white-50">Diferencias por nivel de control, responsabilidades, ventajas y ejemplos.</p>
           </div>
-          <div className="col-md-4">
-            <div className="d-flex gap-2 justify-content-end">
-              <div className="input-group">
-                <span className="input-group-text bg-white border-0">
-                  <Search size={16} className="text-muted"/>
-                </span>
-                <input
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Buscar término…"
-                  className="form-control border-0 shadow-sm"
-                />
+          
+          {/* Navbar compacto centrado */}
+          <div className="col-12 d-flex justify-content-center">
+            <nav className="compact-navbar navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-50 rounded-pill px-3 py-2 shadow-lg" style={{maxWidth: '50%', minWidth: '600px'}}>
+              <div className="container-fluid justify-content-center">
+                {/* Barra de búsqueda compacta */}
+                <div className="input-group me-3" style={{maxWidth: '200px'}}>
+                  <span className="input-group-text bg-white border-0 rounded-start-pill">
+                    <Search size={14} className="text-muted"/>
+                  </span>
+                  <input
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Buscar…"
+                    className="form-control border-0 shadow-sm rounded-end-pill"
+                    style={{fontSize: '0.875rem'}}
+                  />
+                </div>
+                
+                {/* Navegación principal */}
+                <div className="btn-group btn-group-sm" role="group">
+                  <button 
+                    onClick={() => setMode("map")} 
+                    className={`btn ${mode === "map" ? "btn-primary" : "btn-outline-light"} d-flex align-items-center gap-1 px-3`}
+                    title="Vista Mapa Mental"
+                  >
+                    <Network size={14}/> 
+                    <span>Mapa</span>
+                  </button>
+                  <button 
+                    onClick={() => setMode("table")} 
+                    className={`btn ${mode === "table" ? "btn-primary" : "btn-outline-light"} d-flex align-items-center gap-1 px-3`}
+                    title="Vista Comparativa"
+                  >
+                    <Table2 size={14}/> 
+                    <span>Comparativa</span>
+                  </button>
+                  <button 
+                    onClick={() => setMode("providers")} 
+                    className={`btn ${mode === "providers" ? "btn-primary" : "btn-outline-light"} d-flex align-items-center gap-1 px-3`}
+                    title="Vista Proveedores"
+                  >
+                    <Cloud size={14}/> 
+                    <span>Proveedores</span>
+                  </button>
+                </div>
+                
+                {/* Botón de imprimir */}
+                <button 
+                  onClick={onPrint} 
+                  className="btn btn-outline-light btn-sm d-flex align-items-center gap-1 ms-3 px-3"
+                  title="Imprimir"
+                >
+                  <Printer size={14}/>
+                  <span>Imprimir</span>
+                </button>
               </div>
-              <div className="btn-group" role="group">
-                <button 
-                  onClick={() => setMode("map")} 
-                  className={`btn ${mode === "map" ? "btn-primary" : "btn-light"} shadow-sm d-flex align-items-center gap-2`}
-                >
-                  <Network size={16}/> Mapa
-                </button>
-                <button 
-                  onClick={() => setMode("table")} 
-                  className={`btn ${mode === "table" ? "btn-primary" : "btn-light"} shadow-sm d-flex align-items-center gap-2`}
-                >
-                  <Table2 size={16}/> Comparativa
-                </button>
-                <button 
-                  onClick={() => setMode("providers")} 
-                  className={`btn ${mode === "providers" ? "btn-primary" : "btn-light"} shadow-sm d-flex align-items-center gap-2`}
-                >
-                  <Cloud size={16}/> Proveedores
-                </button>
-              </div>
-              <button 
-                onClick={onPrint} 
-                className="btn btn-outline-light shadow-sm d-flex align-items-center gap-2"
-              >
-                <Printer size={16}/> Imprimir
-              </button>
-            </div>
+            </nav>
           </div>
         </div>
       </div>
 
-      <div className="container-fluid">
+      <div className="container-fluid px-3 main-content-wrapper">
         <div className="row">
-          {/* Sidebar con Bootstrap */}
-          <div className="col-lg-3 mb-4">
-            <div className="card shadow border-0 sticky-top" style={{top: '20px'}}>
-              <div className="card-body">
-                <h6 className="card-title d-flex align-items-center gap-2 mb-3">
-                  <Info size={16} className="text-primary"/> Pistas para la clase
-                </h6>
-                <ul className="list-unstyled small">
-                  <li className="mb-2">• Enfatiza <strong>quién gestiona qué</strong> en cada modelo.</li>
-                  <li className="mb-2">• Usa las <strong>analogías de la casa</strong> para fijar conceptos.</li>
-                  <li className="mb-2">• Muestra la <strong>tabla comparativa</strong> para examinar pros y contras.</li>
-                </ul>
-                <div className="mt-3">
-                  <Legend/>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Contenido principal */}
-          <div className="col-lg-9">
+          {/* Contenido principal - ocupa las 12 columnas completas */}
+          <div className="col-12">
             {mode === "map" ? (
-              <div className="card shadow border-0" style={{height: '700px', position: 'relative', overflow: 'hidden'}}>
+              <div className="card shadow border-0" style={{minHeight: '700px', position: 'relative', overflow: 'hidden'}}>
                 <div className="card-body p-0 position-relative h-100">
                   {/* Centro mejorado */}
                   <div 
@@ -1076,17 +1075,91 @@ export default function XaaSMindMap() {
         </div>
       </div>
 
+      {/* Sección de Pistas para la clase - ocupando las 12 columnas */}
+      <div className="container-fluid px-3 mt-5">
+        <div className="row">
+          <div className="col-12">
+            <div className="card shadow border-0 bg-gradient" style={{background: 'linear-gradient(50deg, #ffffffff 0%, #eae3f0ff 100%)'}}>
+              <div className="card-body text-white py-4">
+                <div className="row align-items-center">
+                  <div className="col-md-8">
+                    <h4 className="card-title d-flex align-items-center gap-3 mb-4 fw-bold">
+                      <Info size={24} className="text-warning"/> 
+                      Pistas para la clase
+                    </h4>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <ul className="list-unstyled">
+                          <li className="mb-3 d-flex align-items-start gap-2">
+                            <span className="badge bg-warning text-dark rounded-circle" style={{minWidth: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>1</span>
+                            <span>Enfatiza <strong>quién gestiona qué</strong> en cada modelo.</span>
+                          </li>
+                          <li className="mb-3 d-flex align-items-start gap-2">
+                            <span className="badge bg-warning text-dark rounded-circle" style={{minWidth: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>2</span>
+                            <span>Usa las <strong>analogías de la casa</strong> para fijar conceptos.</span>
+                          </li>
+                          <li className="mb-3 d-flex align-items-start gap-2">
+                            <span className="badge bg-warning text-dark rounded-circle" style={{minWidth: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>3</span>
+                            <span>Muestra la <strong>tabla comparativa</strong> para examinar pros y contras.</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="col-md-6">
+                        <ul className="list-unstyled">
+                          <li className="mb-3 d-flex align-items-start gap-2">
+                            <span className="badge bg-warning text-dark rounded-circle" style={{minWidth: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>4</span>
+                            <span>Destaca las <strong>responsabilidades compartidas</strong> en cada servicio.</span>
+                          </li>
+                          <li className="mb-3 d-flex align-items-start gap-2">
+                            <span className="badge bg-warning text-dark rounded-circle" style={{minWidth: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>5</span>
+                            <span>Relaciona <strong>casos de uso reales</strong> con cada modelo.</span>
+                          </li>
+                          <li className="mb-3 d-flex align-items-start gap-2">
+                            <span className="badge bg-warning text-dark rounded-circle" style={{minWidth: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>6</span>
+                            <span>Compara <strong>proveedores y servicios</strong> específicos.</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-4 text-center">
+                    <div className="mb-3">
+                      <Legend/>
+                    </div>
+                    <p className="small opacity-75 mb-0">
+                      <strong>Leyenda de responsabilidades:</strong><br/>
+                      Usa estos colores para explicar quién maneja cada capa del stack tecnológico.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <DetailPanel open={!!openId} onClose={() => setOpenId(null)} item={current} query={query} />
       <ProviderDetail provider={currentProvider} onClose={() => setSelectedProvider(null)} />
 
-      {/* Footer */}
-      <div className="container-fluid mt-4">
-        <div className="text-center">
-          <small className="text-white-50">
-            Sugerencia didáctica: inicia en SaaS (consumo), sube a PaaS/CaaS (construcción) y termina en IaaS (control). Añade FaaS para eventos.
-          </small>
+      {/* Footer - Pie de página mejorado */}
+      <footer className="container-fluid mt-5 py-4">
+        <div className="row">
+          <div className="col-12">
+            <div className="card bg-dark bg-opacity-75 border-0 shadow">
+              <div className="card-body text-center py-3">
+                <small className="text-white-50 d-block mb-2">
+                  <strong>💡 Sugerencia didáctica:</strong> Inicia en SaaS (consumo), sube a PaaS/CaaS (construcción) y termina en IaaS (control). Añade FaaS para eventos.
+                </small>
+                <div className="text-white-50 small">
+                  <span className="me-3">🔍 Usa la búsqueda para filtrar</span>
+                  <span className="me-3">📊 Compara proveedores</span>
+                  <span>🖨️ Imprime para estudiar</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </footer>
     </div>
   );
 }
