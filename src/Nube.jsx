@@ -486,11 +486,7 @@ function DetailPanel({ open, onClose, item, query }) {
                     <Layers size={16}/> Responsabilidades por capa
                   </h6>
                   <ResponsibilityStack item={item} />
-                  <small className="text-muted mt-2 d-block">
-                    <span className="badge bg-primary me-1"></span>Cliente |
-                    <span className="badge bg-success mx-1"></span>Proveedor |
-                    <span className="badge bg-secondary ms-1"></span>Mixto
-                  </small>
+                  
                 </div>
               )}
 
@@ -538,10 +534,19 @@ function DetailPanel({ open, onClose, item, query }) {
 
 function Legend() {
   return (
-    <div className="d-flex align-items-center gap-2 small text-muted">
-      <span className="badge bg-primary" style={{width: '12px', height: '12px'}}></span> Cliente
-      <span className="badge bg-success" style={{width: '12px', height: '12px'}}></span> Proveedor  
-      <span className="badge bg-secondary" style={{width: '12px', height: '12px'}}></span> Mixto
+    <div className="d-flex flex-column gap-2 small text-muted">
+      <div className="d-flex align-items-center gap-2">
+        <span className="badge bg-primary" style={{width: '12px', height: '12px'}}></span> 
+        <span>TÚ lo gestionas</span>
+      </div>
+      <div className="d-flex align-items-center gap-2">
+        <span className="badge bg-success" style={{width: '12px', height: '12px'}}></span> 
+        <span>Proveedor cloud lo gestiona</span>
+      </div>
+      <div className="d-flex align-items-center gap-2">
+        <span className="badge bg-secondary" style={{width: '12px', height: '12px'}}></span> 
+        <span>Responsabilidad compartida</span>
+      </div>
     </div>
   );
 }
@@ -1079,7 +1084,7 @@ export default function XaaSMindMap() {
       <div className="container-fluid px-3 mt-5">
         <div className="row">
           <div className="col-12">
-            <div className="card shadow border-0 bg-gradient" style={{background: 'linear-gradient(50deg, #ffffffff 0%, #eae3f0ff 100%)'}}>
+            <div className="card shadow border-0 bg-gradient" style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
               <div className="card-body text-white py-4">
                 <div className="row align-items-center">
                   <div className="col-md-8">
@@ -1124,11 +1129,24 @@ export default function XaaSMindMap() {
                   </div>
                   <div className="col-md-4 text-center">
                     <div className="mb-3">
-                      <Legend/>
+                      <h6 className="text-white mb-3">🎯 Leyenda de Responsabilidades</h6>
+                      <div className="d-flex flex-column gap-2 small">
+                        <div className="d-flex align-items-center justify-content-center gap-2">
+                          <span className="badge bg-primary" style={{width: '16px', height: '16px'}}></span> 
+                          <span><strong>TÚ</strong> lo gestionas (como cliente)</span>
+                        </div>
+                        <div className="d-flex align-items-center justify-content-center gap-2">
+                          <span className="badge bg-success" style={{width: '16px', height: '16px'}}></span> 
+                          <span><strong>ELLOS</strong> lo gestionan (proveedor cloud)</span>
+                        </div>
+                        <div className="d-flex align-items-center justify-content-center gap-2">
+                          <span className="badge bg-secondary" style={{width: '16px', height: '16px'}}></span> 
+                          <span><strong>COMPARTIDO</strong> entre ambos</span>
+                        </div>
+                      </div>
                     </div>
                     <p className="small opacity-75 mb-0">
-                      <strong>Leyenda de responsabilidades:</strong><br/>
-                      Usa estos colores para explicar quién maneja cada capa del stack tecnológico.
+                      💡 <strong>Usa estos colores</strong> para explicar claramente a tus estudiantes quién maneja cada parte de la tecnología.
                     </p>
                   </div>
                 </div>
